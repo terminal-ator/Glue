@@ -9,6 +9,13 @@ class ASelect extends Component{
     state = {
         filter : 'all'
     }
+
+    static navigationOptions = ({navigation})=> {
+        return{
+            title: navigation.getParam('details')=='all'? 'Enter Transactions' : 'View/Edit Transactions'
+        }
+    }
+
     componentWillMount(){
         const typeOfView = this.props.navigation.getParam('details');
         let listOfVal ;

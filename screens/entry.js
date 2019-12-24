@@ -8,8 +8,9 @@ class Entry extends Component{
 
     state = {
         selected : 'cash',
-        amount : '0',
-        account : { name: 'Mittal Traders', id : '1'}
+        amount : '',
+        account : { name: 'Mittal Traders', id : '1'},
+        comments: '',
     }
 
     changeType = (val)=>{
@@ -17,7 +18,7 @@ class Entry extends Component{
     }
 
     submit = ()=>{
-        const entry = { account : this.state.account, packet: {amount: this.state.amount, type: this.state.selected}};
+        const entry = { account : this.state.account, packet: {amount: this.state.amount, comments: this.state.comments, type: this.state.selected}};
         this.props.addEntry(entry);
         this.props.navigation.pop();
     }
@@ -27,7 +28,8 @@ class Entry extends Component{
         this.setState({ account : this.props.accounts[accountId]});
         if(this.props.entry[accountId]){
             this.setState({ amount : this.props.entry[accountId].amount,
-            selected: this.props.entry[accountId].type})
+            selected: this.props.entry[accountId].type,
+            comments: this.props.entry[accountId].comments})
         }
     }
 
@@ -62,6 +64,14 @@ class Entry extends Component{
                 value={this.state.amount}
                 onChangeText={(text)=>{this.setState({amount: text})}}
                 ></TextInput>
+                <TextInput
+                    style={[styles.input,{ marginTop: 10 ,height: 150 }]}
+                    placeholder="Comments"
+                    value={this.state.comments}
+                    onChangeText={(text)=>{this.setState({ comments: text })}}
+                    multiline = {true}
+                    numberOfLines = {10}
+                />
                 <View style={estyles.selectRow}> 
                     <Button 
                     disabled={false}

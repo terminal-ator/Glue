@@ -18,21 +18,23 @@ export default class Button extends Component {
             height,
             width,
             borderR,
-            style
+            style,
+            borderC
         } = this.props;
         const backgroundColor = background || 'transparent';
         const color = textColor || 'black';
         const fontSize = textSize || 16;
         const fontWeight = textWeight || '600';
         const alignPosition = textAlign || 'center';
-        const border = borderColor || 'white';
+        const borderCol = borderColor || 'white';
         const opacityStyle = disabled || loading ? 0.5:1;
         const borderRadius = borderR || 0;
         const textOpaciy = loading ? 1 : 1;
-        const addStyle = style || {}
+        const addStyle = style || {};
+        const borderWidth =  borderC || 0;
         return (
             <TouchableOpacity
-            style={[{opacity : opacityStyle, backgroundColor, borderColor: border, borderRadius,height,width,justifyContent:'center'},styles.wrapper, addStyle]}
+            style={[{opacity : opacityStyle,backgroundColor, borderWidth ,borderColor: borderCol , borderRadius,height,width,justifyContent:'center'},styles.wrapper, addStyle]}
             onPress={handleOnPress}
             activeOpacity={0.7}
             disabled={loading}
@@ -68,7 +70,8 @@ Button.propTypes = {
     borderColor: PropType.string,
     height: PropType.number,
     width: PropType.number,
-    borderR: PropType.number
+    borderR: PropType.number,
+    borderC: PropType.number
 }
 
 const styles = StyleSheet.create({
@@ -80,6 +83,15 @@ const styles = StyleSheet.create({
         paddingTop: 12,
         marginTop: 10,
         marginBottom: 10,
-    },
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 3,
+        },
+        shadowOpacity: 0.29,
+        shadowRadius: 4.65,
+
+        elevation: 1,
+        },
 })
 

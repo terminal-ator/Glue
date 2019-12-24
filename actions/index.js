@@ -2,6 +2,7 @@ import { CREATE_ENTRY, START_DAY, UPDATE_MASTERS, UPDATE_DATE, SYNC_SUCCESS, LOA
 import Axios from 'axios';
 
 const SERVER_UI  = 'https://jpent-backend.herokuapp.com'
+// const SERVER_UI = 'http://192.158.0.101:5000'
 
 export function createEntry(entry){
     return{

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Alert  } from 'react-native';
+import { View, Text, StyleSheet, Alert, Dimensions, StatusBar  } from 'react-native';
 import { connect } from 'react-redux';
 import Button from '../components/button';
 import { endDay } from '../actions';
@@ -42,40 +42,47 @@ class mainMenu extends Component {
             }else{
                 chqSum+= parseInt(single.amount)
             }
-        })
+        });
+
+        var width = Dimensions.get('window').width;
+
         return (
             <View style={mStyle.container}>
                 <View style={mStyle.sumRow}>
-                    <View style={[mStyle.banner, {backgroundColor: '#31D18C',}]} >
-                        <Text style={{color: 'white', fontSize:12, fontWeight:"bold"}}>Cash: Rs.{cashSum}</Text>
+                    <View style={[mStyle.banner]} >
+                        <Text style={{color: '#f93158', fontSize:12, fontWeight:"bold"}}>Cash: Rs.{cashSum}</Text>
                     </View>
-                    <View style={[mStyle.banner, {backgroundColor: '#F2AC3E',}]}>
-                        <Text style={{color: 'white',fontSize:12,fontWeight:"bold"}}>Cheque: Rs.{chqSum}</Text>
+                    <View style={[mStyle.banner]}>
+                        <Text style={{color: '#009912',fontSize:12,fontWeight:"bold"}}>Cheque: Rs.{chqSum}</Text>
                     </View> 
                 </View>
                 <View style={{alignSelf: 'center'}}>
                     <Button 
                     disabled={false}
                     handleOnPress = {()=>this.props.navigation.navigate('account',{ details:"all" })}
-                    text='Create New Entry'  width={400} loading={false} textWeight={'200'}
-                    addStyle={{margin: 0}} height={80}
-                    background='#D8D8D8' borderR={8} />
+                    text='Create New Entry'  width={ 0.9*width } loading={false} textWeight={'200'}
+                    addStyle={{margin: 0}} height={40}
+                    background='#fff' borderR={2}
+                    
+                     />
                     </View>
                     <View style={{alignSelf: 'center'}}>
                     <Button 
                     disabled={false}
                     handleOnPress = {()=>this.props.navigation.navigate('account',{ details: "filtered" })}
-                    text='View/Edit' height={80}  width={400} loading={false} textWeight={'200'}
+                    text='View/Edit' height={40}  width={ 0.9 * width} loading={false} textWeight={'200'}
                     addStyle={{margin: 0}}
-                    background='#D8D8D8' borderR={8} />
+                    background='#fff' borderR={2}
+                     />
                     </View>
-                    <View style={{alignSelf: 'center'}}>
+                    <View style={{alignSelf: 'center', }}>
                     <Button 
                     disabled={false}
                     handleOnPress = {()=>this.showAlert()}
-                    text='Day End' height={80} textColor={"white"} width={400} loading={false} textWeight={'200'}
+                    text='Day End' height={40} textColor={"white"} width={0.9 * width } loading={false} textWeight={'200'}
                     addStyle={{margin: 0}}
-                    background='#E14A4A' borderR={8} />
+                    background='#E14A4A' borderR={2}
+                    borderColor={"#000"} />
                     </View>
             </View>
         );
@@ -100,7 +107,7 @@ mapDispatchToProps = dispatch => {
 const mStyle = StyleSheet.create({
     container: {
         flex: 1,
-        marginTop: 20,
+        marginTop: StatusBar.currentHeight,
         alignContent:'space-between'
     },
     sumRow:{
@@ -114,8 +121,8 @@ const mStyle = StyleSheet.create({
         paddingBottom: 25,
         paddingLeft: 20,
         paddingRight: 20,
-        color: "white",
-
+        borderColor : '#000',
+        borderWidth: 1,
     }
 
 })
