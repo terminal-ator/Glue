@@ -9,7 +9,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "expo": "^36.0.0",
-    "moment": "^2.22.2",
+    "moment": "^2.29.4",
     "native-base": "^2.8.1",
     "react": "16.9.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-36.0.1.tar.gz",
